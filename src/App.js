@@ -6,18 +6,10 @@ import Equation from './Equation';
 class App extends Component {
 	state = {
 		numQuestions: 0,
-		numCorrect: 0,
-		value1: Math.floor(Math.random() * 100),
-		value2: Math.floor(Math.random() * 100),
-		value3: Math.floor(Math.random() * 100),
-		get proposedAnswer() {
-			return Math.floor(Math.random() * 3) + this.value1 + this.value2 + this.value3;
-		}
+		numCorrect: 0
 	}
 
-	handleButtonClick = (isEquationTrue, e) => {
-		console.log(isEquationTrue);
-
+	updateScore = (isEquationTrue, e) => {
 		if ((e.target.textContent === 'True' && isEquationTrue) || (e.target.textContent === 'False' && !isEquationTrue)) {
 			this.setState((prevState) => ({
 				numCorrect: prevState.numCorrect + 1
@@ -26,10 +18,6 @@ class App extends Component {
 
 		this.setState((prevState) => ({ 
 			numQuestions: prevState.numQuestions + 1,
-			value1: Math.floor(Math.random() * 100),
-			value2: Math.floor(Math.random() * 100),
-			value3: Math.floor(Math.random() * 100),
-			proposedAnswer: this.state.proposedAnswer
 		}));
 	}
 
@@ -42,15 +30,9 @@ class App extends Component {
 				</header>
 				<div className="game">
 					<h2>Mental Math</h2>
-					<Equation 
-						value1={this.state.value1}
-						value2={this.state.value2}
-						value3={this.state.value3}
-						proposedAnswer={this.state.proposedAnswer}
-						handleButtonClick={this.handleButtonClick}			
-					/>
+					<Equation updateScore={this.updateScore} s/>
 					<p className="text">
-						Your Score: {this.state.numCorrect}/{this.state.numQuestions}<br />
+						Your Score: {this.state.numCorrect}/{this.state.numQuestions}
 					</p>
 				</div>
 			</div>
