@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Equation from './Equation';
+import Score from './Score';
 
 class App extends Component {
 	state = {
@@ -30,10 +31,8 @@ class App extends Component {
 				</header>
 				<div className="game">
 					<h2>Mental Math</h2>
-					<Equation updateScore={this.updateScore} s/>
-					<p className="text">
-						Your Score: {this.state.numCorrect}/{this.state.numQuestions}
-					</p>
+					<Equation updateScore={this.updateScore} />
+					<Score numCorrect={this.state.numCorrect} numQuestions={this.state.numQuestions} />
 				</div>
 			</div>
 		);
